@@ -1,54 +1,84 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>vamk</groupId>
-  <artifactId>REST_API</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
-		<maven.compiler.release>17</maven.compiler.release>
-		<jakartaee-api.version>10.0.0</jakartaee-api.version>
-		<compiler-plugin.version>3.11.0</compiler-plugin.version>
-		<war-plugin.version>3.3.2</war-plugin.version>
-	</properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>vamk</groupId>
+    <artifactId>REST_API</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+        <spring-boot.version>2.5.5</spring-boot.version>
+        <mariadb.version>3.1.0</mariadb.version>
+        <gson.version>2.10.1</gson.version>
+    </properties>
 
+    <dependencies>
+        <!-- Spring Boot Starter Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        
+        <!-- Spring Boot Starter Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        
+        <!-- MariaDB JDBC -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+   			 <artifactId>mariadb-java-client</artifactId>
+    		<version>3.1.0</version> <!-- or the version you intend to use -->
+        </dependency>
+        
+        <!-- Gson for JSON serialization/deserialization -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>Vamk</groupId>
+        	<artifactId>Demo-02</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
-	<dependencies>
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>${jakartaee-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${war-plugin.version}</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+            
+            <!-- Maven War Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            
+            <!-- Spring Boot Maven Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
